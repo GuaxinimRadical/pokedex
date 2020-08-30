@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+import './assets/global.css'
 import './index.css';
 
-import Interface from './components/Interface'
+import App from './components/App'
 
 
 ReactDOM.render(
-  <Interface></Interface>,
+  <App></App>,
   document.getElementById('root')
 );
 

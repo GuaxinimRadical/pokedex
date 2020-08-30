@@ -1,19 +1,14 @@
 import React from 'react'
-import './Interface.css'
+import './App.css'
 
 import Pokemon from './Pokemon'
 
 const pokemonsRequested = 150
 
 
-function makeCardPokemon(id){
-    return(
-        <Pokemon id={id} />
-    )
-}
+const makeCardPokemon = id => <Pokemon id={id} />
 
-function Interface(){
-
+function App(){
     let pokemonsId = []
 
     for (let i = 2; i <= pokemonsRequested; i++) {
@@ -25,9 +20,8 @@ function Interface(){
             <Pokemon id='1' type='grass' name='Bulbassaur' />
 
             {pokemonsId.map( ids =>  makeCardPokemon(ids))}
-
         </div>
     )
 }
 
-export default Interface
+export default App

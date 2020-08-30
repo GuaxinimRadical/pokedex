@@ -1,0 +1,172 @@
+:root {
+    font-size: 60%;
+
+    --color-grass: #78c850;
+    --color-fire: #f08030;
+    --color-water: #6890f0;
+    --color-bug: #a8b820;
+    --color-poison: #a040a0;
+    --color-normal: #a8a878;
+    --color-flying: #a890f0;
+    --color-electric: #f8d030;
+    --color-ground: #e0c068;
+    --color-rock: #b8a038;
+    --color-fighting: #c03028;
+    --color-psychic: #f85888;
+    --color-fairy: #32264D;
+    --color-ghost: #705898;
+    --color-steel: #b8b8d0;
+    --color-ice: #98d8d8;
+    --color-dragon: #7038f8;
+    --color-dark: #705848;
+
+    --color-dark-grass: #58a830;
+    --color-dark-fire: #d06010;
+    --color-dark-water: #4870d0;
+    --color-dark-bug: #889800;
+    --color-dark-poison: #802080;
+    --color-dark-normal: #888858;
+    --color-dark-flying: #8870d0;
+    --color-dark-electric: #d8b010;
+    --color-dark-ground: #c0a048;
+    --color-dark-rock: #988018;
+    --color-dark-fighting: #a01008;
+    --color-dark-psychic: #d83868;
+    --color-dark-fairy: #12062D;
+    --color-dark-ghost: #503878;
+    --color-dark-steel: #9898a0;
+    --color-dark-ice: #78b8b8;
+    --color-dark-dragon: #5018d8;
+    --color-dark-dark: #503828;
+}
+
+@font-face {
+    font-family: 'PressStart';
+    src: url('./fonts/PressStart2P-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'BackTo1982';
+    src: url('./fonts/BACKTO1982.TTF') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+.bg-color-grass {
+    background-color: var(--color-grass);
+}
+.bg-color-fire {
+    background-color: var(--color-fire);
+}
+.bg-color-water {
+    background-color: var(--color-water);
+}
+.bg-color-bug {
+    background-color: var(--color-bug);
+}
+.bg-color-poison {
+    background-color: var(--color-poison);
+}
+.bg-color-normal {
+    background-color: var(--color-normal);
+}
+.bg-color-flying {
+    background-color: var(--color-flying);
+}
+.bg-color-electric {
+    background-color: var(--color-electric);
+}
+.bg-color-ground {
+    background-color: var(--color-ground);
+}
+.bg-color-rock {
+    background-color: var(--color-rock);
+}
+.bg-color-fighting {
+    background-color: var(--color-fighting);
+}
+.bg-color-psychic {
+    background-color: var(--color-psychic);
+}
+.bg-color-fairy {
+    background-color: var(--color-fairy);
+}
+.bg-color-ghost {
+    background-color: var(--color-ghost);
+}
+.bg-color-steel {
+    background-color: var(--color-steel);
+}
+.bg-color-ice {
+    background-color: var(--color-ice);
+}
+.bg-color-dragon {
+    background-color: var(--color-dragon);
+}
+.bg-color-dark {
+    background-color: var(--color-dark);
+}
+
+
+
+.bg-color-dark-grass {
+    background-color: var(--color-dark-grass);
+}
+.bg-color-dark-fire {
+    background-color: var(--color-dark-fire);
+}
+.bg-color-dark-water {
+    background-color: var(--color-dark-water);
+}
+.bg-color-dark-bug {
+    background-color: var(--color-dark-bug);
+}
+.bg-color-dark-poison {
+    background-color: var(--color-dark-poison);
+}
+.bg-color-dark-normal {
+    background-color: var(--color-dark-normal);
+}
+.bg-color-dark-flying {
+    background-color: var(--color-dark-flying);
+}
+.bg-color-dark-electric {
+    background-color: var(--color-dark-electric);
+}
+.bg-color-dark-ground {
+    background-color: var(--color-dark-ground);
+}
+.bg-color-dark-rock {
+    background-color: var(--color-dark-rock);
+}
+.bg-color-dark-fighting {
+    background-color: var(--color-dark-fighting);
+}
+.bg-color-dark-psychic {
+    background-color: var(--color-dark-psychic);
+}
+.bg-color-dark-fairy {
+    background-color: var(--color-dark-fairy);
+}
+.bg-color-dark-ghost {
+    background-color: var(--color-dark-ghost);
+}
+.bg-color-dark-steel {
+    background-color: var(--color-dark-steel);
+}
+.bg-color-dark-ice {
+    background-color: var(--color-dark-ice);
+}
+.bg-color-dark-dragon {
+    background-color: var(--color-dark-dragon);
+}
+.bg-color-dark-dark {
+    background-color: var(--color-dark-dark);
+} 

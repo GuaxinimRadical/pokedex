@@ -33,7 +33,7 @@ export default class Pokemon extends React.Component {
     render(){
         return(
             <div className="all">
-                <div className = {`card ${this.state.types[0]}`}>
+                <div className = {`card bg-color-${this.state.types[0]}`}>
                     <img 
                         src= {`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${this.props.id}.png` }
                         alt=""/> 
@@ -54,8 +54,8 @@ export default class Pokemon extends React.Component {
                         }
                     </div>
 
-                    <section className={`atributes`}>
-                        <ul className={this.state.types[1]}>
+                    <section className={`atributes bg-color-dark-${this.state.types[1]}`}>
+                        <ul>
                             <li>#<b>{this.props.id}</b></li>
                             <li>Kanto</li>
                         </ul>
