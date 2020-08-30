@@ -7,9 +7,17 @@ export default class Pokemon extends React.Component {
     constructor(props){
         super(props)
 
-        const urlGetPokemon = id => `https://pokeapi.co/api/v2/pokemon/${id}`
+        const urlForGetPokemon = `https://pokeapi.co/api/v2/pokemon/${props.id}`
+        this.requestApi(urlForGetPokemon)
 
-        const request = fetch(urlGetPokemon(this.props.id)).then( i => i.json() )
+        this.state = {
+            name: null,
+            types: [null,null]
+        }
+    }
+
+    requestApi(url) {
+        const request = fetch(url).then( i => i.json() )
     
         request.then( pok => {
             this.setState({ 
@@ -19,39 +27,31 @@ export default class Pokemon extends React.Component {
                     pok.types[1] ? pok.types[1].type.name : pok.types[0].type.name
                 ]
             })
-            if(props.id<20) 
-                console.log(this.state)
         })
+    }
 
-        this.state = {
-            name: null,
-            types: [null,null]
-        }
+    verificationIfTypesIsRepeat(){
+        const typeInSet = new Set()
+        this.state.types.forEach( element => typeInSet.add(element))
+
+        const finalArray = Array.from(typeInSet).map( t => <BlockType type={t} /> )
+        return finalArray
     }
 
     
     render(){
         return(
-            <div className="all">
-                <div className = {`card bg-color-${this.state.types[0]}`}>
+            <div className="card">
+                <div className = {`cardContent bg-color-${this.state.types[0]}`}>
                     <img 
                         src= {`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${this.props.id}.png` }
-                        alt=""/> 
+                        alt=""
+                    /> 
 
                     <h1>{String(this.state.name).toUpperCase()}</h1>
 
                     <div>
-                        {
-                            this.state.types
-                                .reduce( (acumulador, i) => {
-                                    if(acumulador[0]===i){
-                                        return acumulador
-                                    } else{
-                                        return acumulador.concat(i)
-                                    }
-                                }, [])
-                                .map( t => <BlockType type={t} /> )
-                        }
+                        { this.verificationIfTypesIsRepeat() }
                     </div>
 
                     <section className={`atributes bg-color-dark-${this.state.types[1]}`}>
