@@ -41,6 +41,13 @@
 }
 
 @font-face {
+    font-family: 'Roboto-Medium';
+    src: url('./fonts/roboto-fonts/Roboto-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
     font-family: 'PressStart';
     src: url('./fonts/PressStart2P-Regular.ttf') format('truetype');
     font-weight: normal;

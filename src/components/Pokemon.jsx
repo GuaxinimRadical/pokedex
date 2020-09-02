@@ -27,6 +27,7 @@ export default class Pokemon extends React.Component {
                     pok.types[1] ? pok.types[1].type.name : pok.types[0].type.name
                 ]
             })
+            this.props.savePokemons(pok.name, this.props.id, pok.types.map(i=>i.type.name) )
         })
     }
 
@@ -50,7 +51,7 @@ export default class Pokemon extends React.Component {
 
                     <h1>{String(this.state.name).toUpperCase()}</h1>
 
-                    <div>
+                    <div className='blocksOfTypes'>
                         { this.verificationIfTypesIsRepeat() }
                     </div>
 

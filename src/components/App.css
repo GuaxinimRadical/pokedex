@@ -1,4 +1,9 @@
-div {
+header {
+    display: flex;
+    justify-content: center;
+}
+
+.pokemons {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
