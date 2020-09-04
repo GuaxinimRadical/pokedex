@@ -11,46 +11,39 @@ class App extends React.Component{
 
         this.state = {
             nameSearching: '',
-            pokemonsToShow: Array(15).fill().map((a,i)=> i+1), //[1,2,3,4],
-            pokemons: Array(200).fill({ name: null, id:null, types:[null,null] })
+            pokemonsToShow: Array(15).fill().map((array,indice)=> indice),
+            pokemons: Array(400).fill({ name: null, id:null, types:[null,null] })
         }
 
-        this.requestApiForSavePokemons(200)
+        this.requestApiForSavePokemons(this.state.pokemons.length)
 
         this.setInputSearch = this.setInputSearch.bind(this)
     }
 
-    makeArray (start, end) {
-        const array = []
-        for (let i = start+1; i <= end; i++) {
-            array.push(i)
-        }
-        return array
-    }
-
     requestApiForSavePokemons(pokemonsForRequest) {
         let array = Array(pokemonsForRequest)
-        for(let id=1; id <= pokemonsForRequest; id++){
-            const url = `https://pokeapi.co/api/v2/pokemon/${id}`
-            const request = fetch(url).then( i => i.json() )
-        
-            request.then( pok => {
-                const dades = {
-                    name: pok.name || null,
-                    types: [ 
-                        pok.types[0].type.name || null, 
-                        pok.types[1] ? pok.types[1].type.name : pok.types[0].type.name
-                    ]
-                }
-                 return dades
-                })
-            .then( dades => {
-                array[id] = dades
-            })
+        for(let id=0; id <= pokemonsForRequest; id++){
+            const url = `https://pokeapi.co/api/v2/pokemon/${id+1}`
+            array[id] = fetch(url).then( i => i.json() ).catch( error => console.log('Erro API: ' + error) )
         }
+        Promise.all(array)
+                .then( poks => {
+                    const dades = (pok) => {
+                        return {
+                            name: pok.name || null,
+                            id: pok.id || null,
+                            types: [ 
+                                pok.types[0].type.name || null, 
+                                pok.types[1] ? pok.types[1].type.name : pok.types[0].type.name
+                            ]
+                        }
+                    }
+                    return Promise.resolve(poks.map(dades))
+                })
+                .then( finalArray => this.setState({ pokemons: finalArray}) )
+                .catch( error => console.log('Erro seu...' + error) )
+
         console.log(this.state)
-        setTimeout( i => this.setState({ pokemons: array}), 2000)
-        //this.setState({ pokemons: array})
     }
 
     setInputSearch(event){
@@ -86,7 +79,7 @@ class App extends React.Component{
                     <SearchBar valueInputSearch={this.state.nameSearching} setInputSearch={this.setInputSearch} />
                 </header>
                 <section className='pokemons'> 
-                    {this.state.pokemonsToShow.map(  ids =>  <Pokemon id={ids} name={this.state.pokemons[ids].name} types={this.state.pokemons[ids].types}/>)}         
+                    {this.state.pokemonsToShow.map( ids => <Pokemon id={this.state.pokemons[ids].id} name={this.state.pokemons[ids].name} types={this.state.pokemons[ids].types}/>)}         
                 </section>
             </div>
         )
