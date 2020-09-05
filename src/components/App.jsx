@@ -11,8 +11,8 @@ class App extends React.Component{
 
         this.state = {
             nameSearching: '',
-            pokemonsToShow: Array(15).fill().map((array,indice)=> indice),
-            pokemons: Array(400).fill({ name: null, id:null, types:[null,null] })
+            pokemonsToShow: Array(25).fill().map((array,indice)=> indice), // 1-3:386 || All:893
+            pokemons: Array(300).fill({ name: null, id:null, types:[null,null] })
         }
 
         this.requestApiForSavePokemons(this.state.pokemons.length)
@@ -42,37 +42,31 @@ class App extends React.Component{
                 })
                 .then( finalArray => this.setState({ pokemons: finalArray}) )
                 .catch( error => console.log('Erro seu...' + error) )
-
-        console.log(this.state)
     }
 
     setInputSearch(event){
         const value = event.target.value
-        this.setState({ nameSearching: value })
-        this.handleSearch()
-        //console.log(this.state.pokemonsToShow)
+        this.setState({ nameSearching: value }, this.handleSearch)
     }
 
     handleSearch(){
         const nameInSearch = this.state.nameSearching
-        if(!nameInSearch) return
 
         const pokemonsFiltered = this.state.pokemons.map(
-            (pokemon) => {
-                if(pokemon.name.includes(nameInSearch))
-                    return pokemon.id
+            (pokemon, indice) => {
+                if(pokemon.name.includes(nameInSearch)){
+                    return indice
+                }
             }
         )
-        .filter( i=> i )
+        .filter( i => i || i===0 )        
         
         this.setState({
             pokemonsToShow: pokemonsFiltered
         })
-        this.updatePokemons()
     }
 
     render(){
-        console.log(this.state)
         return (
             <div>
                 <header>
