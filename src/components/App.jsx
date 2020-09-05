@@ -12,7 +12,7 @@ class App extends React.Component{
         this.state = {
             nameSearching: '',
             pokemonsToShow: Array(25).fill().map((array,indice)=> indice), // 1-3:386 || All:893
-            pokemons: Array(300).fill({ name: null, id:null, types:[null,null] })
+            pokemons: Array(30).fill({ name: null, id:null, types:[null,null] })
         }
 
         this.requestApiForSavePokemons(this.state.pokemons.length)
@@ -32,10 +32,7 @@ class App extends React.Component{
                         return {
                             name: pok.name || null,
                             id: pok.id || null,
-                            types: [ 
-                                pok.types[0].type.name || null, 
-                                pok.types[1] ? pok.types[1].type.name : pok.types[0].type.name
-                            ]
+                            types: pok.types.map( i => i.type.name ) 
                         }
                     }
                     return Promise.resolve(poks.map(dades))
@@ -56,6 +53,8 @@ class App extends React.Component{
             (pokemon, indice) => {
                 if(pokemon.name.includes(nameInSearch)){
                     return indice
+                } else {
+                    return null
                 }
             }
         )

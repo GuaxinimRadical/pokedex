@@ -4,24 +4,7 @@ import BlockType from './blockType'
 import './Pokemon.css' 
 
 export default class Pokemon extends React.Component {
-    constructor(props){
-        super(props)
 
-        this.state = {
-            name: this.props.name,
-            types: this.props.types 
-        }
-    }
-
-    verificationIfTypesIsRepeat(){
-        const typeInSet = new Set()
-        this.props.types.forEach( element => typeInSet.add(element))
-
-        const finalArray = Array.from(typeInSet).map( t => <BlockType type={t} /> )
-        return finalArray
-    }
-
-    
     render(){
         return(
             <div className="card">
@@ -34,10 +17,10 @@ export default class Pokemon extends React.Component {
                     <h1>{String(this.props.name).toUpperCase()}</h1>
 
                     <div className='blocksOfTypes'>
-                        { this.verificationIfTypesIsRepeat() }
+                        { this.props.types.map( t => <BlockType type={t} /> ) }
                     </div>
 
-                    <section className={`atributes bg-color-dark-${this.props.types[1]}`}>
+                    <section className={`atributes bg-color-dark-${this.props.types[1] || this.props.types[0]}`}>
                         <ul>
                             <li>#<b>{this.props.id}</b></li>
                             <li>Kanto</li>
