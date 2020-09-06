@@ -1,1 +1,3 @@
 # pokedex
+
+![Screenshot](./screenshot.png)

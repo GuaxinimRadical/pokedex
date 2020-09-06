@@ -1,17 +1,29 @@
 import React from 'react'
+
+import 'bootstrap/dist/js/bootstrap.bundle'
+import 'popper.js'
+import $ from 'jquery'
+
 import './SearchBar.css'
  
 
 export default class SearchBar extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props)
-        this.state = {
-            nameSearch: ''
-        }
     }
 
-    a(event){
-        this.setState({ nameSearch:event.target.value })
+    click(but){
+        $(but.target).button('toggle')
+
+        const numberGeneration = parseInt(but.target.innerText)
+        const newStateForGeneration = !!but.target.classList[2] 
+
+        if(newStateForGeneration){
+            this.props.generationsForShow.add(numberGeneration)
+        } else {
+            this.props.generationsForShow.delete(numberGeneration)
+        }
+	    this.props.handleSearch()
     }
 
     render(){
@@ -20,9 +32,9 @@ export default class SearchBar extends React.Component {
                 <div className="btn-toolbar geracoes mr-2" role="toolbar" aria-label="Toolbar com grupos de botões"> 
                     <div className="btn-group" role="group" aria-label="Primeiro grupo">
                         <button type="button" className="btn btn-secondary">Geração: </button>
-                        <button type="button" className="btn btn-outline-secondary">1</button>
-                        <button type="button" className="btn btn-outline-secondary">2</button>
-                        <button type="button" className="btn btn-outline-secondary">3</button>
+                        <button type="button" onClick={ i => this.click(i)} className="btn btn-outline-secondary">1</button>
+                        <button type="button" onClick={ i => this.click(i)} className="btn btn-outline-secondary">2</button>
+                        <button type="button" onClick={ i => this.click(i)} className="btn btn-outline-secondary">3</button>
                         
                     </div>
                 </div> 

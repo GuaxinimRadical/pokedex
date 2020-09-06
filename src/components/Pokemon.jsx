@@ -23,10 +23,9 @@ export default class Pokemon extends React.Component {
                     <section className={`atributes bg-color-dark-${this.props.types[1] || this.props.types[0]}`}>
                         <ul>
                             <li>#<b>{this.props.id}</b></li>
-                            <li>Kanto</li>
+                            <li>{this.props.generation} - Kanto</li>
                         </ul>
                     </section>
-                    
                 </div> 
             </div>
         )
