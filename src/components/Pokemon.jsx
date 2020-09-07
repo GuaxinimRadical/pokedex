@@ -8,25 +8,27 @@ export default class Pokemon extends React.Component {
     render(){
         return(
             <div className="card">
-                <div className = {`cardContent bg-color-${this.props.types[0]}`}>
-                    <img 
-                        src= {`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${this.props.id}.png` }
-                        alt=""
-                    /> 
+               {( !this.props.id || (
+                    <div className = {`cardContent bg-color-${this.props.types[0]}`}>
+                        <img 
+                            src= {`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${this.props.id}.png` }
+                            alt=""
+                        /> 
 
-                    <h1>{String(this.props.name).toUpperCase()}</h1>
+                        <h1>{String(this.props.name).toUpperCase()}</h1>
 
-                    <div className='blocksOfTypes'>
-                        { this.props.types.map( t => <BlockType type={t} /> ) }
-                    </div>
+                        <div className='blocksOfTypes'>
+                            { this.props.types.map( t => <BlockType type={t} /> ) }
+                        </div>
 
-                    <section className={`atributes bg-color-dark-${this.props.types[1] || this.props.types[0]}`}>
-                        <ul>
-                            <li>#<b>{this.props.id}</b></li>
-                            <li>{this.props.generation} - Kanto</li>
-                        </ul>
-                    </section>
-                </div> 
+                        <section className={`atributes bg-color-dark-${this.props.types[1] || this.props.types[0]}`}>
+                            <ul>
+                                <li>#<b>{this.props.id}</b></li>
+                                <li>{this.props.generation} - Kanto</li>
+                            </ul>
+                        </section>
+                    </div> 
+                ))}
             </div>
         )
     }
