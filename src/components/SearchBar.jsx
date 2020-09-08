@@ -8,22 +8,19 @@ import './SearchBar.css'
  
 
 export default class SearchBar extends React.Component {
-    constructor(props) {
-        super(props)
-    }
 
-    click(but){
+    click(but, numberGeneration){
         $(but.target).button('toggle')
 
-        const numberGeneration = parseInt(but.target.innerText)
-        const newStateForGeneration = !!but.target.classList[2] 
+        const newStateForGeneration = !!but.target.classList[2] //When the button is active it earn a new class from Bootstrap, if it's disable it hasn't it
 
         if(newStateForGeneration){
             this.props.generationsForShow.add(numberGeneration)
         } else {
             this.props.generationsForShow.delete(numberGeneration)
         }
-	    this.props.handleSearch()
+	    
+	this.props.handleSearch()
     }
 
     render(){
@@ -32,9 +29,9 @@ export default class SearchBar extends React.Component {
                 <div className="btn-toolbar geracoes mr-2" role="toolbar" aria-label="Toolbar com grupos de botões"> 
                     <div className="btn-group" role="group" aria-label="Primeiro grupo">
                         <button type="button" className="btn btn-secondary">Geração: </button>
-                        <button type="button" onClick={ i => this.click(i)} className="btn btn-outline-secondary">1</button>
-                        <button type="button" onClick={ i => this.click(i)} className="btn btn-outline-secondary">2</button>
-                        <button type="button" onClick={ i => this.click(i)} className="btn btn-outline-secondary">3</button>
+                        <button type="button" onClick={ i => this.click(i, 1)} className="btn btn-outline-secondary">1</button>
+                        <button type="button" onClick={ i => this.click(i, 2)} className="btn btn-outline-secondary">2</button>
+                        <button type="button" onClick={ i => this.click(i, 3)} className="btn btn-outline-secondary">3</button>
                         
                     </div>
                 </div> 
