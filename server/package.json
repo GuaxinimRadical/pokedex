@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon api.js"
   },
   "keywords": [],
   "author": "",
@@ -13,7 +13,11 @@
     "axios": "^0.20.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "knex": "^0.21.5",
     "mariadb": "^2.4.2",
-    "sequelize": "^6.3.5"
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }

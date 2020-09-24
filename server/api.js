@@ -1,44 +1,29 @@
 const express = require('express')
-const Sequelize = require('sequelize')
 const cors = require('cors')
-
+var knex = require('knex')({
+	client: 'mysql',
+	connection: {
+		host: 'localhost',
+		user: 'root',
+		password: '123',
+		database: 'pokedex'
+	}
+})
 
 const app = express()
 const portServer = 5050
 
-const connection = new Sequelize('pokedex','root', '123', {
-	host: 'localhost',
-	dialect: 'mariadb'
-})
-
-const tablePokemons = connection.define('pokemons',{
-	name: {
-		type: Sequelize.DataTypes.STRING 
-	},
-	type1:{
-		type: Sequelize.DataTypes.STRING
-	},
-	type2: {
-		type: Sequelize.DataTypes.STRING
-	},
-	generation: {
-		type: Sequelize.DataTypes.STRING
-	}
-})
-
 app.use(cors())
+
 app.get('/:id', function(req,res){
 	const parameters = req.params.id
+	const idPokemonOnArray = parseInt(parameters)-1
 
-	tablePokemons.findAll({
-		where:{
-			id: parseInt(parameters)
-		}
-	})
+	knex.select('id', 'name', 'type1', 'type2', 'generation').from('pokemons')	
 	.then( function(pokemon){
-		const pok = pokemon[0].dataValues
+		const pok = pokemon[idPokemonOnArray]
 
-		res.send(JSON.stringify(pokemon[0].dataValues))
+		res.send(JSON.stringify(pok))
 		console.log(pok)
 	})
 	.catch(function(err){

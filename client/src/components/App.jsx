@@ -31,17 +31,16 @@ class App extends React.Component{
 				.catch( error => console.log('Erro API: ' + error))
         }
         Promise.all(array)
-                .then( poks => {
-					console.log(poks)
-                    const dades = (pok) => {
-                        return {
+                .then( arrayWithPokemons => {
+					return Promise.resolve(arrayWithPokemons.map( pok => {
+						return {
                             name: pok.name || null,
                             id: pok.id || null,
-                            types: [pok.type1, pok.type2],
-                            generation: pok.generation                        }
-                    }
-                    return Promise.resolve(poks.map(dades))
-                })
+                            types: pok.type2 ? [pok.type1, pok.type2] : [pok.type1],
+                            generation: pok.generation                        		
+						}
+					}))
+				})
                 .then( finalArray => this.setState({ pokemons: finalArray}) )
                 .catch( error => console.log('Erro seu...' + error) )
     }
