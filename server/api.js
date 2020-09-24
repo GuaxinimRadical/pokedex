@@ -1,5 +1,7 @@
 const express = require('express')
 const Sequelize = require('sequelize')
+const cors = require('cors')
+
 
 const app = express()
 const portServer = 5050
@@ -24,6 +26,7 @@ const tablePokemons = connection.define('pokemons',{
 	}
 })
 
+app.use(cors())
 app.get('/:id', function(req,res){
 	const parameters = req.params.id
 
@@ -35,7 +38,7 @@ app.get('/:id', function(req,res){
 	.then( function(pokemon){
 		const pok = pokemon[0].dataValues
 
-		res.send(pokemon[0].dataValues)
+		res.send(JSON.stringify(pokemon[0].dataValues))
 		console.log(pok)
 	})
 	.catch(function(err){
@@ -45,4 +48,4 @@ app.get('/:id', function(req,res){
 	
 })
 
-app.listen(portServer, () => 'Servidor aos 30')
+app.listen(portServer, () => console.log('Servidor aos 30'))

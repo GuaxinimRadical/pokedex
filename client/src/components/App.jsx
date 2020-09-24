@@ -25,26 +25,20 @@ class App extends React.Component{
     requestApiForSavePokemons(pokemonsForRequest) {
         let array = Array(pokemonsForRequest)
         for(let id=0; id <= pokemonsForRequest; id++){
-            const url = `https://pokeapi.co/api/v2/pokemon/${id+1}`
-            array[id] = fetch(url).then( i => i.json() ).catch( error => console.log('Erro API: ' + error) )
+			const url = `http://localhost:5050/${id+1}`
+			array[id] = fetch(url)
+				.then( r => r.json() )
+				.catch( error => console.log('Erro API: ' + error))
         }
         Promise.all(array)
                 .then( poks => {
+					console.log(poks)
                     const dades = (pok) => {
                         return {
                             name: pok.name || null,
                             id: pok.id || null,
-                            types: pok.types.map( i => i.type.name ),
-                            generation: ( pok.id <= 151 ? 1 : (
-                                        pok.id <= 251 ? 2 : (
-                                        pok.id <= 386 ? 3 : (
-                                        pok.id <= 493 ? 4 : (
-                                        pok.id <= 649 ? 5 : (
-                                        pok.id <= 721 ? 5 : (
-                                        pok.id <= 809 ? 6 : (
-                                        pok.id <= 896 ? 7 : 8
-                                        ) ) ) ) ) ) ) ) 
-                        }
+                            types: [pok.type1, pok.type2],
+                            generation: pok.generation                        }
                     }
                     return Promise.resolve(poks.map(dades))
                 })
