@@ -1,12 +1,9 @@
 const express = require('express')
 const cors = require('cors')
 var knex = require('knex')({
-	client: 'mysql',
+	client: 'sqlite3',
 	connection: {
-		host: 'localhost',
-		user: 'root',
-		password: '123',
-		database: 'pokedex'
+		filename: './databases/pokedex.sqlite'
 	}
 })
 
