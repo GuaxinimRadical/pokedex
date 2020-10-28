@@ -1,6 +1,6 @@
 import React from 'react'
 
-import BlockType from './blockType'
+import BlockType from './blockType.jsx'
 import './Pokemon.css' 
 
 export default class Pokemon extends React.Component {

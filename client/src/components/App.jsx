@@ -1,8 +1,8 @@
 import React from 'react'
 import './App.css'
 
-import Pokemon from './Pokemon'
-import SearchBar from './SearchBar'
+import Pokemon from './Pokemon.jsx'
+import SearchBar from './SearchBar.jsx'
 
 
 class App extends React.Component{
